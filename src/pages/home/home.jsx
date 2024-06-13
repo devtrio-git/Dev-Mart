@@ -1,10 +1,13 @@
 import React from 'react'
+import PageLayout from '../../components/layouts/page-layout';
 
 const HomePage = () => {
   return (
-    <div>
+    <PageLayout>
+   
       Home
-    </div>
+
+    </PageLayout>
   )
 }
 
