@@ -18,7 +18,7 @@ const LoginPage = () => {
         <form className="mt-3">
           <TextInput styles={{ marginBottom: '18px' }} placeholder="Email" type="email" ></TextInput>
           <TextInput styles={{ marginBottom: '5px' }} placeholder="Password" type="password" ></TextInput>
-        <small><Link className={styles.forget_password_link} to='/auth/login'>Forget Password</Link></small>
+          <small><Link className={styles.forget_password_link} to='/auth/login'>Forgot Password</Link></small>
           <div className={styles.button_wrapper}>
             <PrimaryButton loading={false} disabled={false} onClick={onSubmitLogin}>Log In</PrimaryButton>
           </div>
