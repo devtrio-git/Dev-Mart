@@ -9,7 +9,8 @@ const PrimaryButton = (props) => {
             onClick={props.onClick}
             disabled={props.disabled}
         >
-            {props.loading ? "Loading..." : props.children}
+            {props.loading ? <>  <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status"> Loading...</span> </>  : props.children}
         </button>
     )
 }
