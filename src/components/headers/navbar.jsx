@@ -2,13 +2,14 @@ import React, { useContext } from 'react'
 import styles from './navbar.module.scss';
 import searchIcon from '../../assets/icons/search-icon.svg';
 import cartIcon from '../../assets/icons/cart-icon.svg';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Sidebar from '../sidebar/sidebar';
 import { sidebarContext } from '../../contexts/sidebar.context';
 import GlobalSearch from '../search-bar/global-search-bar';
 import ShoppingCart from '../cart/shopping-cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../redux/features/user-slice';
+import logo from "../../assets/imgs/logo.png"
 const Navbar = () => {
     const { is_sidebar, sidebarOpen } = useContext(sidebarContext);
     const isLogin = useSelector(state=> state.user.isLogin);
@@ -22,7 +23,7 @@ const Navbar = () => {
             <Sidebar></Sidebar>
             <nav className={`navbar navbar-expand-lg ${styles.app_navbar_container}`}>
                 <div className="container">
-                    <a className="navbar-brand" href="#">Dev Mart</a>
+                    <Link className="navbar-brand" to="/"><img src={logo} width={120} /></Link>
                     <button className="navbar-toggler" onClick={() => sidebarOpen()} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
