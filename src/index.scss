@@ -30,3 +30,16 @@
     font-size: 17px;
     font-weight: 500;
 }
+// banner sliders
+.bannerSlider {
+    .swiper-pagination{
+        .swiper-pagination-bullet{
+        }
+        .swiper-pagination-bullet-active{
+            width: 10px;
+            height: 10px;
+            background-color: $primaryColor;
+            border: 1px solid white;
+        }
+    }
+}
