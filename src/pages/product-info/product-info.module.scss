@@ -1,0 +1,22 @@
+@import '../../theme.scss';
+
+.product_images_container {
+    >figure {
+        height: 450px;
+
+        >img {
+            width     : 100%;
+            object-fit: contain;
+        }
+    }
+
+    .product_images_slider_container {
+        height          : 125px;
+
+        .product_other_images {
+            height: 125px;
+            width : 145px;
+            object-fit: cover;
+        }
+    }
+}

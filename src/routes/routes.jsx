@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/home/home";
 import SignUpPage from "../pages/auth/sign-up";
 import LoginPage from "../pages/auth/login";
-import Products from "../pages/products/products";
+import ProductsPage from "../pages/products/products";
+import ProductInfoPage from "../pages/product-info/product-info";
 
 export const publicRoutes = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ export const publicRoutes = createBrowserRouter([
     },
     {
         path: '/products',
-        element: <Products></Products>
+        element: <ProductsPage></ProductsPage>
+    },
+    {
+        path: '/product-info',
+        element: <ProductInfoPage></ProductInfoPage>
     },
 ])

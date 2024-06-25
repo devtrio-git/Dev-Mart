@@ -5,7 +5,7 @@ import dummyData from "../../services/dummy-data.json"
 import ProductCard from '../../components/card/product-card'
 import styles from "./products.module.scss"
 
-const Products = () => {
+const ProductsPage = () => {
     return (
         <PageLayout>
             <div className={`${styles.best_product_section} container my-5 py-5`}>
@@ -24,4 +24,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default ProductsPage
