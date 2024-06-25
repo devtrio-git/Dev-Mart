@@ -3,14 +3,16 @@ import SectionHeading from '../../components/section-headings/section-heading';
 import BestProductSlider from '../../components/sliders/best-product-slider';
 import { singleProduct } from '../../services/single-data';
 import styles from './product-info.module.scss';
-import React from 'react'
+import React, { useState } from 'react'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { Rating } from 'react-simple-star-rating';
+import ProductColorsVariants from './product-color-variants';
 const ProductInfoPage = () => {
+    const [activeColor, setActiveColor] = useState(singleProduct.colors?.[0] ?? null);
 
-    console.log(singleProduct);
+  
     return (
         <PageLayout>
 
@@ -42,7 +44,28 @@ const ProductInfoPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-5"></div>
+                    <div className="col-lg-5">
+                        <div className={styles.product_content_container}>
+                            <h1 className={styles.product_title}>{singleProduct.name}</h1>
+                            <div className='d-flex gap-2 align-items-center'>
+                                <div><Rating readonly initialValue={singleProduct.rating} size={22} /></div>
+                                <span className={styles.in_stock}>In Stock</span>
+                            </div>
+
+                            <p className={styles.product_price}>${singleProduct.price}</p>
+                            <p className={styles.product_desc}>{singleProduct.description}</p>
+
+
+                            <div className={`${styles.product_color_variants} d-flex gap-2 align-items-center`}>
+                                <span className={styles.product_color_title}>Colors:</span>
+                                <div className='d-flex gap-2 align-items-center'>
+                                    {activeColor && <ProductColorsVariants colorsList={singleProduct.colors} activeColor={activeColor} onChangeColor={setActiveColor}></ProductColorsVariants>}
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
             </section>
 

@@ -10,6 +10,6 @@ export const singleProduct = {
     price: "192.00",
     stockQty: 10,
     images: [image0, image1, image2, image3, image1, image2, image3, image1, image2, image3],
-    rating: 4.3,
+    rating: 4,
     colors: ["#5458dd", "#055877"]
 }
