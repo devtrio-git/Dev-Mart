@@ -9,10 +9,13 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rating } from 'react-simple-star-rating';
 import ProductColorsVariants from './product-color-variants';
+import PrimaryButton from '../../components/buttons/primary-button';
+import ProductQuantityCounter from '../../components/cart/product-quantity-counter';
 const ProductInfoPage = () => {
+
     const [activeColor, setActiveColor] = useState(singleProduct.colors?.[0] ?? null);
 
-  
+
     return (
         <PageLayout>
 
@@ -61,6 +64,12 @@ const ProductInfoPage = () => {
                                 <div className='d-flex gap-2 align-items-center'>
                                     {activeColor && <ProductColorsVariants colorsList={singleProduct.colors} activeColor={activeColor} onChangeColor={setActiveColor}></ProductColorsVariants>}
                                 </div>
+                            </div>
+
+
+                            <div className={`${styles.product_buy_container} d-flex gap-2 align-items-center my-5`}>
+                                <div ><ProductQuantityCounter></ProductQuantityCounter></div>
+                                <div><PrimaryButton onClick={() => null}>Buy Now</PrimaryButton></div>
                             </div>
 
 

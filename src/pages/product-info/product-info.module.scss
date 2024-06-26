@@ -63,3 +63,13 @@
         }
     }
 }
+
+
+
+.product_buy_container {
+    >div:nth-child(1) {}
+
+    >div:nth-child(2) {
+        width: 150px;
+    }
+}

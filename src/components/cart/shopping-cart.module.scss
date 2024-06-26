@@ -1,4 +1,17 @@
+@import '../../theme.scss';
 
 .shopping_cart_icon {
     width: 25px;
+}
+
+.product_quantity_counter {
+    width : 150px;
+    height: 40px;
+    background: greenyellow;
+
+    .update_counter_button{
+        display: block;
+        width: 40px;
+        background-color: red;
+    }
 }
