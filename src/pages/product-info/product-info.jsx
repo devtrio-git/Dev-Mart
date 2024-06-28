@@ -11,6 +11,10 @@ import { Rating } from 'react-simple-star-rating';
 import ProductColorsVariants from './product-color-variants';
 import PrimaryButton from '../../components/buttons/primary-button';
 import ProductQuantityCounter from '../../components/cart/product-quantity-counter';
+import deliveryIcon from '../../assets/icons/icon-delivery.svg';
+import returnIcon from '../../assets/icons/icon-return.svg';
+import ProductShippingCard from './product-shipping-card';
+import ProductImagesSlider from '../../components/sliders/product-imgs-slider';
 const ProductInfoPage = () => {
 
     const [activeColor, setActiveColor] = useState(singleProduct.colors?.[0] ?? null);
@@ -27,23 +31,7 @@ const ProductInfoPage = () => {
                                 <img src={singleProduct.images?.[0]} alt="product feature image" />
                             </figure>
                             <div className={styles.product_images_slider_container}>
-                                <Swiper
-                                    slidesPerView={1}
-                                    spaceBetween={160}
-                                    breakpoints={{
-                                        0: { slidesPerView: 2, spaceBetween: 20 },
-                                        768: { slidesPerView: 3, spaceBetween: 20 },
-                                        992: { slidesPerView: 5, spaceBetween: 30 },
-                                        1200: { slidesPerView: 6, spaceBetween: 30 },
-                                    }}
-                                    className="mySwiper"
-                                >
-                                    {singleProduct.images.map((src, key) => (
-                                        <SwiperSlide key={key} className='d-flex justify-content-center'>
-                                            <img className={styles.product_other_images} src={src} alt="other images of product" />
-                                        </SwiperSlide>
-                                    ))}
-                                </Swiper>
+                                <ProductImagesSlider images={singleProduct.images}></ProductImagesSlider>
                             </div>
                         </div>
                     </div>
@@ -67,19 +55,20 @@ const ProductInfoPage = () => {
                             </div>
 
 
-                            <div className={`${styles.product_buy_container} d-flex gap-2 align-items-center my-5`}>
+                            <div className={`${styles.product_buy_container} d-flex gap-3 align-items-center my-5`}>
                                 <div ><ProductQuantityCounter></ProductQuantityCounter></div>
                                 <div><PrimaryButton onClick={() => null}>Buy Now</PrimaryButton></div>
                             </div>
 
+                            <div className={`${styles.product_shipping_container} d-flex flex-column my-5`}>
+                                <ProductShippingCard iconSrc={deliveryIcon} title="Free Delivery" desc="Enter your postal code for Delivery Availability"></ProductShippingCard>
+                                <ProductShippingCard iconSrc={returnIcon} title="Return Delivery" desc="Free 30 Days Delivery Returns."></ProductShippingCard>
+                            </div>
 
                         </div>
                     </div>
                 </div>
             </section>
-
-
-
 
             {/* Related Products */}
             <section className={`${styles.best_product_section} container my-5 py-5`}>
