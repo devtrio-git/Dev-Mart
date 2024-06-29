@@ -35,7 +35,7 @@ const ProductInfoPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-5">
+                    <div className="col-lg-5 mt-lg-0 mt-5">
                         <div className={styles.product_content_container}>
                             <h1 className={styles.product_title}>{singleProduct.name}</h1>
                             <div className='d-flex gap-2 align-items-center'>

@@ -11,8 +11,8 @@ export default function ProductImagesSlider({ images }) {
     return (
         <>
             <Swiper
-                slidesPerView={1}
-                spaceBetween={160}
+                slidesPerView={4}
+                spaceBetween={150}
                 breakpoints={{
                     0: { slidesPerView: 2, spaceBetween: 20 },
                     768: { slidesPerView: 3, spaceBetween: 20 },
