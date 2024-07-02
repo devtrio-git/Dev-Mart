@@ -3,10 +3,9 @@ import SectionHeading from '../../components/section-headings/section-heading';
 import BestProductSlider from '../../components/sliders/best-product-slider';
 import { singleProduct } from '../../services/single-data';
 import styles from './product-info.module.scss';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rating } from 'react-simple-star-rating';
 import ProductColorsVariants from './product-color-variants';
 import PrimaryButton from '../../components/buttons/primary-button';
@@ -15,10 +14,17 @@ import deliveryIcon from '../../assets/icons/icon-delivery.svg';
 import returnIcon from '../../assets/icons/icon-return.svg';
 import ProductShippingCard from './product-shipping-card';
 import ProductImagesSlider from '../../components/sliders/product-imgs-slider';
+import useShoppingCart from '../../hooks/use-shopping-cart';
 const ProductInfoPage = () => {
-
     const [activeColor, setActiveColor] = useState(singleProduct.colors?.[0] ?? null);
+    const { addToCart, decreaseQuantityInCart, removeFromCart, getProductQuantity, getCartProducts, getCartCount, clearCart } = useShoppingCart()
+    const [quantity, setQuantity] = useState(0);
 
+    useEffect(() => {
+        const qty = getProductQuantity(singleProduct);
+        setQuantity(qty)
+    }, [addToCart, decreaseQuantityInCart, clearCart])
+    console.log(quantity);
 
     return (
         <PageLayout>
@@ -56,8 +62,11 @@ const ProductInfoPage = () => {
 
 
                             <div className={`${styles.product_buy_container} d-flex gap-3 align-items-center my-5`}>
-                                <div ><ProductQuantityCounter></ProductQuantityCounter></div>
+                                <div >{quantity > 0 ?
+                                    <ProductQuantityCounter quantity={quantity} onIncrementCount={() => addToCart(singleProduct)} onDecrementCount={() => decreaseQuantityInCart(singleProduct)} ></ProductQuantityCounter>
+                                    : <PrimaryButton onClick={() => addToCart(singleProduct)}>Add to cart</PrimaryButton>} </div>
                                 <div><PrimaryButton onClick={() => null}>Buy Now</PrimaryButton></div>
+                                <div><PrimaryButton onClick={() => clearCart()}>clear cart</PrimaryButton></div>
                             </div>
 
                             <div className={`${styles.product_shipping_container} d-flex flex-column my-5`}>
