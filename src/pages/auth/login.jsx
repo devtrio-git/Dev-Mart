@@ -37,6 +37,7 @@ const LoginPage = () => {
         const payload = { email, password };
         const response = await axios.post("https://dev-mart-server.vercel.app/api/user/login", payload)
 
+        console.log(response?.data?.data, "<-- login response")
         dispatch(addUser(response?.data?.data))
         setErrors({ email: "", password: "" })
         navigate("/")
@@ -44,6 +45,7 @@ const LoginPage = () => {
 
       } catch (error) {
         console.log(error.response)
+        console.log("------------")
         setAuthError(error?.response?.data?.message)
         setLoader(false);
       }

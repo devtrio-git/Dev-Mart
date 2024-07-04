@@ -15,6 +15,7 @@ const Sidebar = () => {
     const is_sidebar_active = is_sidebar ? `${styles.sidebar_container} ${styles.active}` : `${styles.sidebar_container}`
     const isLogin = useSelector(state => state.user.isLogin);
     const dispatch = useDispatch();
+    console.log(isLogin)
     const signOut = () => {
         dispatch(removeUser())
     }

@@ -7,6 +7,7 @@ import styles from "./sliders.module.scss";
 import CategoryCard from '../card/category-card';
 import dummyData from "../../services/dummy-data.json";
 import ProductCard from '../card/product-card';
+console.log(dummyData.products)
 export default function BestProductSlider() {
   const swiperRef = useRef(null);
 
