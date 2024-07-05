@@ -33,7 +33,7 @@ const useShoppingCart = () => {
     }
 
     function getCartCount() {
-        return products.length;
+        return products.reduce((acc, item) => acc+=item.quantity, 0);
     }
 
     function getCartProducts() {

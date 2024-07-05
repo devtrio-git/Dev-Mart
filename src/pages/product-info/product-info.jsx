@@ -15,6 +15,7 @@ import ProductImagesSlider from '../../components/sliders/product-imgs-slider';
 import useShoppingCart from '../../hooks/use-shopping-cart';
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import { Helpers } from '../../services/helpers';
 
 
 const ProductInfoPage = () => {
@@ -22,7 +23,7 @@ const ProductInfoPage = () => {
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(0);
     const [activeColor, setActiveColor] = useState(singleProduct.colors?.[0] ?? null);
-    const { addToCart, decreaseProductQuantityInCart, removeFromCart, getCartCount, getCartProducts, getCartProductQuantity} = useShoppingCart();
+    const { addToCart, decreaseProductQuantityInCart, removeFromCart, getCartCount, getCartProducts, getCartProductQuantity } = useShoppingCart();
 
     useEffect(() => {
         const q = getCartProductQuantity(singleProduct.id);
@@ -53,7 +54,7 @@ const ProductInfoPage = () => {
                                 <span className={styles.in_stock}>In Stock</span>
                             </div>
 
-                            <p className={styles.product_price}>${singleProduct.price}</p>
+                            <p className={styles.product_price}>{Helpers.priceFormatter(singleProduct.price)}</p>
                             <p className={styles.product_desc}>{singleProduct.description}</p>
 
 
