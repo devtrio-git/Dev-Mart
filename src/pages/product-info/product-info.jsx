@@ -3,10 +3,7 @@ import SectionHeading from '../../components/section-headings/section-heading';
 import BestProductSlider from '../../components/sliders/best-product-slider';
 import { singleProduct } from '../../services/single-data';
 import styles from './product-info.module.scss';
-import React, { useState } from 'react'
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useEffect, useState } from 'react'
 import { Rating } from 'react-simple-star-rating';
 import ProductColorsVariants from './product-color-variants';
 import PrimaryButton from '../../components/buttons/primary-button';
@@ -15,9 +12,22 @@ import deliveryIcon from '../../assets/icons/icon-delivery.svg';
 import returnIcon from '../../assets/icons/icon-return.svg';
 import ProductShippingCard from './product-shipping-card';
 import ProductImagesSlider from '../../components/sliders/product-imgs-slider';
-const ProductInfoPage = () => {
+import useShoppingCart from '../../hooks/use-shopping-cart';
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 
+
+const ProductInfoPage = () => {
+    const isLogin = useSelector(state => state.user.isLogin)
+    const navigate = useNavigate();
+    const [quantity, setQuantity] = useState(0);
     const [activeColor, setActiveColor] = useState(singleProduct.colors?.[0] ?? null);
+    const { addToCart, decreaseProductQuantityInCart, removeFromCart, getCartCount, getCartProducts, getCartProductQuantity} = useShoppingCart();
+
+    useEffect(() => {
+        const q = getCartProductQuantity(singleProduct.id);
+        setQuantity(q);
+    }, [getCartProductQuantity, addToCart, decreaseProductQuantityInCart]);
 
 
     return (
@@ -56,7 +66,9 @@ const ProductInfoPage = () => {
 
 
                             <div className={`${styles.product_buy_container} d-flex gap-3 align-items-center my-5`}>
-                                <div ><ProductQuantityCounter></ProductQuantityCounter></div>
+                                <div >{quantity > 0 ? <ProductQuantityCounter qty={quantity} onIncrement={() => addToCart(singleProduct)} onDecrement={() => decreaseProductQuantityInCart(singleProduct)}></ProductQuantityCounter>
+                                    : <div><PrimaryButton onClick={() => addToCart(singleProduct)}>Add to cart</PrimaryButton></div>
+                                }</div>
                                 <div><PrimaryButton onClick={() => null}>Buy Now</PrimaryButton></div>
                             </div>
 
